@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+
+	RewriteEngine on
+	
+	# Block all content files from being accessed directly
+	RewriteRule ^content/(.*)\.(txt|text|markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext)$ error [R=301,L]
+	
+	# Block all templates from being accessed directly
+	RewriteRule ^templates/(.*) error [R=301,L]
+	
+	# Block all system files from being accessed directly
+	RewriteRule ^pronto/(.*) error [R=301,L]
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*) index.php [L]
+
+</IfModule>
